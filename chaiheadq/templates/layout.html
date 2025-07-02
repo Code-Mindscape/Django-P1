@@ -35,7 +35,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <!-- Home -->
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">
+          <a class="nav-link active" aria-current="page" href="/tweet">
             <i class="bi bi-house-door-fill me-1"></i> Home
           </a>
         </li>
@@ -49,7 +49,7 @@
 
         <!-- New Tweet -->
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="/tweet/create">
             <i class="bi bi-plus-circle-fill me-1"></i> New Tweet
           </a>
         </li>
@@ -65,12 +65,21 @@
                  type="search" placeholder="Search…" aria-label="Search">
         </div>
       </form>
-
-      <!-- Action Buttons -->
+      {% if  user.is_authenticated %}
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button class="btn btn-danger btn-sm btn-outline-light me-2"  type="submit">Logout</button>
+      </form>
+      {% else %}
       <div class="d-flex align-items-center">
         <a class="btn btn-sm btn-outline-light me-2"  href="{% url 'login' %}">Login</a>
         <a class="btn btn-sm btn-light"  href="{% url 'register' %}">Register</a>
       </div>
+      {% endif %}
+
+      
+
+      <!-- Action Buttons -->
     </div>
   </div>
 </nav>
