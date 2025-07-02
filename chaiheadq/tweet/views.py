@@ -56,7 +56,7 @@ def register(request):
         form = UserResgitrationFrom(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])
+            user.set_password(form.cleaned_data['password1'])
             user.save()
             login(request, user)
             return redirect('tweet_list')
